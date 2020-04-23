@@ -1,0 +1,14 @@
+version: "3"
+services:
+  switzerland_nginx:
+    ports:
+      - "8003:8003"
+    build: ./nginx
+    volumes:
+      - ./app/www:/usr/share/nginx/html/
+    depends_on:
+      - switzerland_gunicorn
+  switzerland_gunicorn:
+    build: ./gunicorn
+    volumes:
+      - ./app:/app
